@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: gym-backend
+  datasource:
+    url: jdbc:db2://${DB2_HOST:localhost}:${DB2_PORT:50000}/${DB2_NAME:GYMDB}
+    username: ${DB2_USER:db2inst1}
+    password: ${DB2_PASSWORD:gympass123}
+    driver-class-name: com.ibm.db2.jcc.DB2Driver
+  jpa:
+    hibernate:
+      ddl-auto: update        # creates/updates tables in DB2 automatically
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.DB2Dialect
+        default_schema: ${DB2_SCHEMA:DB2INST1}
+
+app:
+  cors-origins: http://localhost:4200
+  seed-data: true
